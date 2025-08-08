@@ -1,0 +1,481 @@
+<!Doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Department Football Team</title>
+<style>
+  :root{
+    --primary:#034694;     /* Chelsea blue */
+    --accent:#f4c542;
+    --bg:#f5f7fb;
+    --muted:#64748b;
+    --white:#ffffff;
+    --card-shadow: 0 8px 24px rgba(10,20,40,0.08);
+    --glass: rgba(255,255,255,0.85);
+  }
+
+  /* ----- Reset & base ----- */
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:var(--bg); color:#0b1220; -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale; line-height:1.4;
+  }
+  a{color:inherit}
+
+  /* ----- NAV ----- */
+  nav.top {
+    position:sticky; top:12px; z-index:1100;
+    display:flex; justify-content:center; gap:10px;
+    padding:8px 12px; background-color: #0f0802;
+    pointer-events:auto;
+  }
+  nav.top .nav-btn {
+    background:rgba(255,255,255,0.06); color:var(--white); border-radius:8px;
+    padding:9px 14px; text-decoration:none; font-weight:700; border:1px solid rgba(255,255,255,0.06);
+    transition:transform .18s, background .18s, color .18s;
+  }
+  nav.top .nav-btn:hover{ transform:translateY(-3px); background:var(--white); color:var(--primary) }
+
+  /* ----- HERO ----- */
+  header.hero {
+    min-height:100vh; display:flex; align-items:center; justify-content:center;
+    background-image: linear-gradient(rgba(3,10,30,0.45), rgba(3,10,30,0.35)),
+      url('bg.jpg');
+    background-size:cover; background-position:center;
+    position:relative; overflow:hidden;
+  }
+  .hero-frame{
+    width:92%; max-width:1200px; height:75vh; border-radius:20px;
+    border:6px solid rgba(255,255,255,0.95);
+    box-shadow:0 28px 80px rgba(2,8,23,0.5);
+    position:relative; display:flex; align-items:center; justify-content:center;
+    backdrop-filter: blur(4px); padding:36px;
+  }
+  .hero-title{
+    position:absolute; top:26px; left:40px; right:40px; text-align:center; pointer-events:none;
+  }
+  .hero-title h1{
+    font-size:96px; color:var(--white); letter-spacing:8px; font-weight:900;
+    text-shadow:0 12px 40px rgba(0,0,0,0.5);
+    margin:0;
+  }
+  .hero-tag{ position:absolute; top:138px; left:72px; color:rgba(255,255,255,0.92); font-size:14px; font-style:italic; }
+  .hero-cta{ position:absolute; bottom:36px; display:flex; gap:12px; left:40px; }
+  .btn {
+    background:var(--primary); color:var(--white); padding:12px 18px; border-radius:10px; font-weight:800;
+    border:none; cursor:pointer; box-shadow:0 8px 24px rgba(3,61,148,0.14); transition:transform .16s;
+  }
+  .btn:hover{ transform:translateY(-3px) }
+  .ghost { background:transparent; color:var(--white); border:1px solid rgba(255,255,255,0.12) }
+
+  .hero-left-hint{
+    position:absolute; left:22px; top:50%; transform:translateY(-50%) rotate(-90deg);
+    color:rgba(255,255,255,0.96); font-weight:800; font-size:12px; letter-spacing:1px;
+  }
+  .hero-side-links{
+    position:absolute; right:40px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:18px; text-align:right;
+  }
+  .hero-side-links a{ color:var(--white); text-decoration:none; font-weight:700; letter-spacing:1px }
+
+  /* ----- SECTIONS (hidden by default except home) ----- */
+  main > section {
+    display:none; padding:56px 20px; min-height:72vh; transition:opacity .45s, transform .45s;
+    opacity:0; transform:translateY(12px);
+  }
+  main > section.active { display:block; opacity:1; transform:translateY(0) }
+
+  .container{ max-width:1200px; margin:0 auto }
+
+  /* ----- PLAYERS GRID ----- */
+  .players-grid{
+    display:grid; gap:18px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    margin-top:18px;
+  }
+  .player-card{
+    background:var(--white); border-radius:12px; padding:14px; text-align:center; cursor:pointer;
+    box-shadow:var(--card-shadow); transition:transform .18s, box-shadow .18s;
+  }
+  .player-card:hover{ transform:translateY(-8px); box-shadow:0 18px 48px rgba(3,10,28,0.12) }
+  .player-photo{
+    width:120px; height:120px; border-radius:50%; object-fit:cover; margin:0 auto 10px; display:block; border:4px solid rgba(3,61,148,0.06);
+  }
+  .player-name{ font-weight:800; color:var(--primary); font-size:1rem; margin-bottom:4px }
+  .player-nick{ font-style:italic; color:var(--muted); font-size:0.92rem; margin-bottom:6px }
+  .player-level{ font-size:0.85rem; color:#445569 }
+
+  /* ----- MODAL ----- */
+  .modal {
+    position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:1400;
+    background:linear-gradient(rgba(2,6,23,0.6), rgba(2,6,23,0.6));
+  }
+  .modal.show{ display:flex }
+  .modal-card{ 
+    background:var(--white); padding:18px; border-radius:10px; width:100%; max-width:520px; box-shadow:0 30px 80px rgba(2,8,23,0.4); position:relative; 
+    font-size: 0.9rem;
+    color: #213042;
+  }
+  .modal-card img{ width:110px; height:110px; object-fit:cover; border-radius:8px; float:left; margin-right:12px }
+  .modal-close{ position:absolute; right:12px; top:10px; font-size:20px; cursor:pointer; color:#666 }
+  .modal-card label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  .modal-card input, .modal-card select {
+    width: 100%;
+    max-width: 140px;
+    padding: 4px 6px;
+    margin-top: 2px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .modal-card button.btn {
+    margin-top: 12px;
+    width: auto;
+    padding: 8px 14px;
+    font-weight: 700;
+  }
+
+  /* ----- FIXTURES / UPDATES ----- */
+  table{ width:100%; border-collapse:collapse; margin-top:12px }
+  th,td{ border:1px solid #e6eef8; padding:10px; text-align:center }
+  thead th{ background:var(--primary); color:var(--white) }
+
+  .updates-list{ list-style:none; margin-top:12px; display:flex; flex-direction:column; gap:12px }
+  .update{ background:var(--white); padding:14px; border-radius:10px; box-shadow:var(--card-shadow) }
+
+  /* ----- GALLERY LIGHTBOX ----- */
+  .gallery-grid{ display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); margin-top:12px }
+  .gallery-grid img{ width:100%; height:150px; object-fit:cover; border-radius:8px; cursor:pointer }
+  .lightbox{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.92); z-index:1500 }
+  .lightbox img{ max-width:92%; max-height:86%; border-radius:6px }
+
+  /* ----- CONTACT ----- */
+  .contact-card{ max-width:720px; margin:18px auto; padding:18px; background:var(--white); border-radius:10px; box-shadow:var(--card-shadow); display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap }
+  .whatsapp-btn{ background:linear-gradient(180deg,var(--accent),#e6b800); color:#111; padding:12px 18px; border-radius:10px; font-weight:800; text-decoration:none }
+
+  /* ----- FOOTER ----- */
+  footer{ padding:18px; text-align:center; color:var(--white); background:linear-gradient(90deg,var(--primary),#012a5e); margin-top:26px }
+
+  /* ----- RESPONSIVE ----- */
+  @media (max-width:880px){
+    .hero-title h1 { font-size:54px }
+    .hero-frame{ height:78vh; padding:20px; border-radius:14px }
+    .modal-card img{ display:block; float:none; margin:0 auto 10px }
+  }
+  @media (max-width:480px){
+    .hero-title h1 { font-size:36px }
+    .player-photo{ width:100px; height:100px }
+    .player-card{ padding:12px }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top nav (transparent over hero) -->
+<nav class="top" aria-label="Main navigation">
+  <a class="nav-btn" href="#home" data-section="home">Home</a>
+  <a class="nav-btn" href="#players" data-section="players">Players</a>
+  <a class="nav-btn" href="#fixtures" data-section="fixtures">Fixtures</a>
+  <a class="nav-btn" href="#updates" data-section="updates">Updates</a>
+  <a class="nav-btn" href="#gallery" data-section="gallery">Gallery</a>
+  <a class="nav-btn" href="#contact" data-section="contact">Contact</a>
+</nav>
+
+<!-- HERO (Home) -->
+<header class="hero" id="home" role="banner">
+  <div class="hero-frame" role="img" aria-label="Football pitch hero">
+    <div class="hero-left-hint">SCROLL DOWN  ⬇</div>
+
+    <div class="hero-title" aria-hidden="true">
+      <h1>NALLS TEAM</h1>
+    </div>
+
+    <div class="hero-tag">200lvl Linguistics Team — School Football Team</div>
+
+    <div class="hero-cta">
+      <button class="btn" data-section="players">Meet the Team</button>
+      <button class="btn ghost" data-section="fixtures">See Fixtures</button>
+    </div>
+
+    <nav class="hero-side-links" aria-hidden="true">
+      <a href="#home" data-section="home">HOME</a>
+      <a href="#updates" data-section="updates">NEWS</a>
+      <a href="#players" data-section="players">TEAMS</a>
+      <a href="#fixtures" data-section="fixtures">GAMES</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- PLAYERS -->
+  <section id="players" aria-labelledby="playersTitle" class="active">
+    <div class="container">
+      <h2 id="playersTitle">Players & Manager</h2>
+      <p style="color:var(--muted); margin-top:6px">Click a player to view and edit detailed stats.</p>
+
+      <div class="players-grid" id="playersGrid" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- FIXTURES -->
+  <section id="fixtures" aria-labelledby="fixturesTitle">
+    <div class="container">
+      <h2 id="fixturesTitle">Upcoming Fixtures</h2>
+      <table aria-describedby="fixturesTitle">
+        <thead><tr><th>Date</th><th>Competition</th><th>Opponent</th><th>Venue</th></tr></thead>
+        <tbody>
+          <tr><td>12 Aug 2025</td><td>Inter-School Cup</td><td>Greenfield High</td><td>Main Stadium</td></tr>
+          <tr><td>20 Aug 2025</td><td>Friendly</td><td>Blue Ridge College</td><td>Home Ground</td></tr>
+          <tr><td>02 Sep 2025</td><td>League Match</td><td>Riverside Institute</td><td>Away</td></tr>
+          <tr><td>02 Sep 2025</td><td>League Match</td><td>Riverside Institute</td><td>Away</td></tr>
+          <tr><td>02 Sep 2025</td><td>League Match</td><td>Riverside Institute</td><td>Away</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- UPDATES -->
+  <section id="updates" aria-labelledby="updatesTitle">
+    <div class="container">
+      <h2 id="updatesTitle">Latest Updates</h2>
+      <ul class="updates-list" aria-live="polite">
+        <li class="update">🏆 <strong>Victory!</strong> We beat Hillcrest Academy 3–1 in the semi-finals.</li>
+        <li class="update">📢  <strong>Training:</strong> Date and Time <em> Unknown.</em></li>
+        <li class="update">🧾 New kit arriving next week — sponsors confirmed.</li>
+        <li class="update">🧾 New kit arriving next week — sponsors confirmed.</li>
+        <li class="update">🧾 New kit arriving next week — sponsors confirmed.</li>
+        <li class="update">🧾 New kit arriving next week — sponsors confirmed.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" aria-labelledby="galleryTitle">
+    <div class="container">
+      <h2 id="galleryTitle">Gallery</h2>
+      <p style="color:var(--muted)">Click images to view larger; video is playable inline.</p>
+      <div class="gallery-grid" id="galleryGrid">
+        <img src="gall1.jpeg" alt="Match action 1">
+        <img src="gall2.jpeg" alt="Training">
+        <img src="gall1.jpeg" alt="Team huddle">
+        <img src="gall2.jpeg" alt="Crowd">
+        <img src="gall1.jpeg" alt="Goal celebration">
+      </div>
+
+      <div style="margin-top:18px">
+        <iframe width="100%" height="360" src="https://www.youtube.com/embed/0wq-AqAv1Ps?si=zTTAYLbWg42KwKF3" title="Team video" allowfullscreen loading="lazy" style="border-radius:8px"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" aria-labelledby="contactTitle">
+    <div class="container">
+      <h2 id="contactTitle">Contact — WhatsApp</h2>
+      <p style="color:var(--muted)">Have questions or want to join? Chat with us directly on WhatsApp.</p>
+      <div class="contact-card" role="region" aria-label="WhatsApp contact">
+        <div>
+          <h3 style="margin:0">Team WhatsApp</h3>
+          <p style="margin:6px 0 0;color:var(--muted)">Click the button to contact sport director</p>
+        </div>
+        <a class="whatsapp-btn" id="whatsappBtn" href="whatsapp.webp" target="_blank" rel="noopener noreferrer">💬 Chat on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  &copy; <span id="year"></span> 200LVL Linguistics Team — School Football Team. All rights reserved.
+</footer>
+
+<!-- PLAYER MODAL -->
+<div id="playerModal" class="modal" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalPlayerName">
+    <div class="modal-close" id="modalClose" aria-label="Close">✕</div>
+    <img id="modalPhoto" src="" alt="" />
+    <h3 id="modalPlayerName" style="margin-top:4px"></h3>
+    <p id="modalPlayerNick" style="color:var(--muted);margin:6px 0"></p>
+
+    <form id="statsForm" style="margin-top:12px;">
+      <label>Goals:
+        <input type="number" name="goals" min="0" required />
+      </label>
+      <label>Assists:
+        <input type="number" name="assists" min="0" required />
+      </label>
+      <label>Appearances:
+        <input type="number" name="appearances" min="1" required />
+      </label>
+      <label>Yellow cards:
+        <input type="number" name="yellow" min="0" required />
+      </label>
+      <label>Red cards:
+        <input type="number" name="red" min="0" required />
+      </label>
+      <label>Position:
+        <select name="position" required>
+          <option value="Goalkeeper">Goalkeeper</option>
+          <option value="Defender">Defender</option>
+          <option value="Midfielder">Midfielder</option>
+          <option value="Forward">Forward</option>
+        </select>
+      </label>
+      <label>Jersey:
+        <input type="number" name="jersey" min="1" required />
+      </label>
+
+      <button type="submit" class="btn">Save</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const players = [
+  {name:"Fabunmi Ayodeji Damilare", nickname:"CAPTAIN", level:"200L", img:"https://source.unsplash.com/400x400/?football,player&sig=1"},
+  {name:"Owolabi Olamilekan Remilekun", nickname:"LEXXY", level:"200L", img:"lekan.jpeg"},
+  {name:"Adeyemi Elijah Mayowa", nickname:"Sharp Shooter", level:"200L", img:"https://source.unsplash.com/400x400/?football,player&sig=3"},
+  {name:"Ajayi David Olamide", nickname:"Playmaker", level:"200L", img:"https://source.unsplash.com/400x400/?football,player&sig=4"},
+  {name:"Dahunsi Ogooluwa Ebenezer", nickname:"Tank", level:"200L", img:"ogo.jpeg"},
+  {name:"Oluwatunmise Samuel Ayomiposi", nickname:"Iron Man", level:"200L", img:"https://source.unsplash.com/400x400/?football,player&sig=6"},
+  {name:"Olaniyi Joseph Olamilekan", nickname:"Airborne", level:"200L", img:"ola.jpeg"},
+  {name:"Afolabi Oluwatosin Oluwagbenga", nickname:"Bullet", level:"200L", img:"https://source.unsplash.com/400x400/?football,player&sig=8"},
+  {name:"Ayeni Oreoluwa Greatgrace", nickname:"Sniper", level:"200L", img:"https://source.unsplash.com/400x400/?football,player&sig=9"},
+  {name:"Adeosebikan Segun Abayomi", nickname:"Gladiator", level:"200L", img:"https://source.unsplash.com/400x400/?football,player&sig=10"},
+  {name:"Ikuomola Daniel", nickname:"Rock", level:"200L", img:"daniel.jpeg"},
+  {name:"Badru Oluwatumininu", nickname:"Machine", level:"200L", img:"https://source.unsplash.com/400x400/?football,player&sig=12"},
+  {name:"Latef Fawas Morenikeji", nickname:"Maestro", level:"200L", img:"https://source.unsplash.com/400x400/?football,player&sig=13"},
+  {name:"Megbowon Iwabiolorun", nickname:"COOK", level:"200L", img:"cook.jpeg"},
+  {name:"Iheanacho Daniel", nickname:"Storm", level:"200L", img:"https://source.unsplash.com/400x400/?football,player&sig=15"},
+  {name:"Godwin Samuel Erikefee", nickname:"Wizard", level:"200L", img:"alpha.jpeg"},
+  {name:"Adedeji Adedolapo Daniel", nickname:"Shadow", level:"200L", img:"https://source.unsplash.com/400x400/?football,player&sig=17"},
+  {name:"SALAU Abdulramon Tobiloba", nickname:"Hawk Eye", level:"200L", img:"https://source.unsplash.com/400x400/?football,player&sig=18"},
+  {name:"Tiamiyu Abdulsalam Adedayo", nickname:"SMONEY", level:"200L", img:"TSA.jpeg"},
+  {name:"Adeyinka Paul Adeboye", nickname:"REVEREND", level:"200L", img:"paul.jpeg"},
+  {
+      name:"Manager: Coach Adewale", nickname:"The Strategist", level:"Staff",
+      img:"https://source.unsplash.com/400x400/?football,coach&sig=11"
+    }
+  ];
+
+  // Initialize random stats only once
+  players.forEach((p, idx) => {
+    if (!p.stats) {
+      p.stats = {
+        goals: Math.floor(Math.random()*55),
+        assists: Math.floor(Math.random()*8),
+        appearances: Math.floor(Math.random()*30)+1,
+        yellow: Math.floor(Math.random()*5),
+        red: Math.floor(Math.random()*2),
+        position: ['Goalkeeper','Defender','Midfielder','Forward'][idx % 4],
+        jersey: idx + 1
+      };
+    }
+  });
+
+  const grid = document.getElementById('playersGrid');
+  const modal = document.getElementById('playerModal');
+  const modalClose = document.getElementById('modalClose');
+  const statsForm = document.getElementById('statsForm');
+  let currentPlayer = null;
+
+  function openPlayerModal(player) {
+    currentPlayer = player;
+
+    document.getElementById('modalPhoto').src = player.img;
+    document.getElementById('modalPhoto').alt = player.name + " photo";
+    document.getElementById('modalPlayerName').textContent = player.name;
+    document.getElementById('modalPlayerNick').textContent = player.nickname + ' • ' + player.level;
+
+    // Fill form with current stats
+    statsForm.goals.value = player.stats.goals;
+    statsForm.assists.value = player.stats.assists;
+    statsForm.appearances.value = player.stats.appearances;
+    statsForm.yellow.value = player.stats.yellow;
+    statsForm.red.value = player.stats.red;
+    statsForm.position.value = player.stats.position;
+    statsForm.jersey.value = player.stats.jersey;
+
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden', 'false');
+    modalClose.focus();
+  }
+
+  function closePlayerModal() {
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+    currentPlayer = null;
+  }
+
+  modalClose.addEventListener('click', closePlayerModal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closePlayerModal();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('show')) closePlayerModal();
+  });
+
+  statsForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!currentPlayer) return;
+
+    currentPlayer.stats.goals = parseInt(statsForm.goals.value, 10);
+    currentPlayer.stats.assists = parseInt(statsForm.assists.value, 10);
+    currentPlayer.stats.appearances = parseInt(statsForm.appearances.value, 10);
+    currentPlayer.stats.yellow = parseInt(statsForm.yellow.value, 10);
+    currentPlayer.stats.red = parseInt(statsForm.red.value, 10);
+    currentPlayer.stats.position = statsForm.position.value;
+    currentPlayer.stats.jersey = parseInt(statsForm.jersey.value, 10);
+
+    closePlayerModal();
+  });
+
+  // Build player cards
+  players.forEach((p, idx) => {
+    const card = document.createElement('article');
+    card.className = 'player-card';
+    card.setAttribute('role','button');
+    card.setAttribute('tabindex','0');
+    card.innerHTML = `
+      <img class="player-photo" src="${p.img}" alt="${p.name} photo" loading="lazy" />
+      <div class="player-name">${p.name}</div>
+      <div class="player-nick">${p.nickname}</div>
+      <div class="player-level">${p.level}</div>
+    `;
+    card.addEventListener('click', () => openPlayerModal(p));
+    card.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openPlayerModal(p);
+      }
+    });
+    grid.appendChild(card);
+  });
+
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Nav buttons smooth scroll and section toggle
+  document.querySelectorAll('nav.top .nav-btn, .hero-cta .btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const section = btn.dataset.section;
+      if (!section) return;
+
+      document.querySelectorAll('main > section').forEach(sec => sec.classList.remove('active'));
+      const target = document.getElementById(section);
+      if (target) target.classList.add('active');
+
+      // Scroll top smoothly
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+  });
+</script>
+
+</body>
+</html>
