@@ -679,6 +679,80 @@
                 padding: 0 1rem;
             }
 
+            /* Hero Stats */
+            .hero-stats {
+                gap: 1rem;
+                margin: 2rem 0;
+            }
+
+            .stat-card {
+                padding: 1rem;
+                min-width: 100px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
+            }
+
+            /* Featured Players */
+            .featured-players {
+                margin: 2rem 0;
+            }
+
+            .featured-players h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .featured-grid {
+                gap: 1rem;
+            }
+
+            .featured-player {
+                padding: 1rem;
+                min-width: 150px;
+            }
+
+            .featured-player img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .featured-info h4 {
+                font-size: 1rem;
+            }
+
+            .featured-info p {
+                font-size: 0.8rem;
+            }
+
+            /* Quick Links */
+            .quick-links {
+                gap: 1rem;
+                margin: 2rem 0;
+            }
+
+            .quick-link-card {
+                padding: 1rem;
+                min-width: 140px;
+            }
+
+            .quick-link-card i {
+                font-size: 1.5rem;
+            }
+
+            .quick-link-card h4 {
+                font-size: 1rem;
+            }
+
+            .quick-link-card p {
+                font-size: 0.8rem;
+            }
+
             /* Scroll indicator */
             .scroll-indicator {
                 display: none;
@@ -1051,6 +1125,145 @@
                 font-size: 16px;
             }
         }
+
+        /* Hero Stats */
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 120px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--white);
+            opacity: 0.9;
+        }
+
+        /* Featured Players */
+        .featured-players {
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .featured-players h3 {
+            color: var(--white);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .featured-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .featured-player {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            min-width: 200px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .featured-player:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .featured-player img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .featured-info h4 {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .featured-info p {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Quick Links */
+        .quick-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .quick-link-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            min-width: 180px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .quick-link-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .quick-link-card i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .quick-link-card h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-link-card p {
+            color: var(--white);
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
@@ -1103,6 +1316,73 @@
                 <p>Excellence on and off the field. Building champions, creating leaders.</p>
                 <a href="#" class="cta-button">Join the Team</a>
             </div>
+            
+            <!-- Quick Stats -->
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Players</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Matches Won</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Trophies</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2024</div>
+                    <div class="stat-label">Season</div>
+                </div>
+            </div>
+            
+            <!-- Featured Players -->
+            <div class="featured-players">
+                <h3>Featured Players</h3>
+                <div class="featured-grid">
+                    <div class="featured-player">
+                        <img src="cook.jpeg" alt="Featured Player 1">
+                        <div class="featured-info">
+                            <h4>Fabunmi Ayodeji</h4>
+                            <p>Top Scorer</p>
+                        </div>
+                    </div>
+                    <div class="featured-player">
+                        <img src="daniel.jpeg" alt="Featured Player 2">
+                        <div class="featured-info">
+                            <h4>Owolabi Lekan</h4>
+                            <p>Team Captain</p>
+                        </div>
+                    </div>
+                    <div class="featured-player">
+                        <img src="ola.jpeg" alt="Featured Player 3">
+                        <div class="featured-info">
+                            <h4>Adeyemi Mayowa</h4>
+                            <p>Defensive Rock</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="quick-links">
+                <div class="quick-link-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h4>Next Match</h4>
+                    <p>Dec 15 vs City University</p>
+                </div>
+                <div class="quick-link-card">
+                    <i class="fas fa-trophy"></i>
+                    <h4>Latest Trophy</h4>
+                    <p>Championship Cup 2024</p>
+                </div>
+                <div class="quick-link-card">
+                    <i class="fas fa-users"></i>
+                    <h4>Team Size</h4>
+                    <p>20 Players + Coach</p>
+                </div>
+            </div>
         </div>
         
         <div class="scroll-indicator">
@@ -1111,7 +1391,14 @@
             <div class="scroll-chevron">&#8595;</div>
         </div>
         
-       
+        <div class="hero-nav">
+            <div class="hero-nav-links">
+                <a onclick="showSection('home')">HOME</a>
+                <div class="hero-nav-line"></div>
+                <a onclick="showSection('updates')">NEWS</a>
+                <a onclick="showSection('players')">TEAMS</a>
+                <a onclick="showSection('fixtures')">GAMES</a>
+            </div>
         </div>
         
         <div class="hero-social">
