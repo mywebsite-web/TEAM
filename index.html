@@ -1,259 +1,1139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Department Football Team</title>
-  <style>
-    :root{
-      --primary: #034694; /* Chelsea blue */
-      --accent: #f4c542;
-      --bg: #f5f7fb;
-      --muted: #64748b;
-      --white: #ffffff;
-      --card-shadow: 0 8px 24px rgba(10,20,40,0.08);
-      --glass: rgba(255,255,255,0.85);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Football Team - Department of Sports</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* ----- Reset & base ----- */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-    body {
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: var(--bg); color: #0b1220;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale; line-height: 1.4;
-    }
-    a { color: inherit; text-decoration: none; }
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --accent-color: #f59e0b;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --white: #ffffff;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
 
-    /* ----- NAV ----- */
-    nav.top {
-      position: sticky; top: 0; z-index: 1100;
-      display: flex; justify-content: center; gap: 20px;
-      padding: 12px 20px; background-color: #0f0802;
-    }
-    nav.top .nav-btn {
-      background: rgba(255, 255, 255, 0.06); color: var(--white);
-      border-radius: 8px; padding: 10px 16px; font-weight: 700;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      transition: transform 0.18s, background 0.18s, color 0.18s;
-    }
-    nav.top .nav-btn:hover {
-      transform: translateY(-3px); background: var(--white); color: var(--primary);
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
 
-    /* ----- HERO ----- */
-    header.hero {
-      min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      background-image: linear-gradient(rgba(3,10,30,0.45), rgba(3,10,30,0.35)), url('bg.jpg');
-      background-size: cover; background-position: center;
-      position: relative; overflow: hidden;
-    }
-    .hero-frame {
-      width: 92%; max-width: 1200px; height: 75vh;
-      border-radius: 20px; border: 6px solid rgba(255, 255, 255, 0.95);
-      box-shadow: 0 28px 80px rgba(2, 8, 23, 0.5);
-      display: flex; align-items: center; justify-content: center;
-      backdrop-filter: blur(4px); padding: 36px;
-    }
-    .hero-title { position: absolute; top: 20%; left: 40px; right: 40px; text-align: center; }
-    .hero-title h1 {
-      font-size: 96px; color: var(--white); letter-spacing: 8px; font-weight: 900;
-      text-shadow: 0 12px 40px rgba(0,0,0,0.5); margin: 0;
-    }
-    .hero-tag { position: absolute; top: 138px; left: 72px; color: rgba(255,255,255,0.92); font-size: 14px; font-style: italic; }
-    .hero-cta { position: absolute; bottom: 36px; display: flex; gap: 12px; left: 40px; }
-    .btn {
-      background: var(--primary); color: var(--white); padding: 12px 18px;
-      border-radius: 10px; font-weight: 800; border: none; cursor: pointer;
-      box-shadow: 0 8px 24px rgba(3, 61, 148, 0.14); transition: transform 0.16s;
-    }
-    .btn:hover { transform: translateY(-3px); }
-    .ghost { background: transparent; color: var(--white); border: 1px solid rgba(255, 255, 255, 0.12); }
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(30, 58, 138, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
 
-    /* ----- SECTIONS (hidden by default except home) ----- */
-    main > section {
-      display: none; padding: 56px 20px; min-height: 72vh;
-      transition: opacity 0.45s, transform 0.45s; opacity: 0; transform: translateY(12px);
-    }
-    main > section.active { display: block; opacity: 1; transform: translateY(0); }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
 
-    .container { max-width: 1200px; margin: 0 auto; }
+        .logo {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
 
-    /* ----- PLAYERS GRID ----- */
-    .players-grid {
-      display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-top: 18px;
-    }
-    .player-card {
-      background: var(--white); border-radius: 12px; padding: 14px; text-align: center; cursor: pointer;
-      box-shadow: var(--card-shadow); transition: transform 0.18s, box-shadow 0.18s;
-    }
-    .player-card:hover { transform: translateY(-8px); box-shadow: 0 18px 48px rgba(3,10,28,0.12); }
-    .player-photo {
-      width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 auto 10px;
-    }
-    .player-name { font-weight: 800; color: var(--primary); font-size: 1rem; margin-bottom: 4px; }
-    .player-nick { font-style: italic; color: var(--muted); font-size: 0.92rem; margin-bottom: 6px; }
-    .player-level { font-size: 0.85rem; color: #445569; }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
 
-    /* ----- FIXTURES STYLING ----- */
-    table {
-      width: 100%; border-collapse: collapse; margin-top: 12px;
-    }
-    th, td { border: 1px solid #e6eef8; padding: 10px; text-align: center; }
-    thead th { background: var(--primary); color: var(--white); }
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
 
-    /* ----- CONTACT STYLING ----- */
-    .contact-card {
-      max-width: 720px; margin: 18px auto; padding: 18px;
-      background: var(--white); border-radius: 10px; box-shadow: var(--card-shadow);
-      display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap;
-    }
-    .whatsapp-btn {
-      background: linear-gradient(180deg, var(--accent), #e6b800); color: #111;
-      padding: 12px 18px; border-radius: 10px; font-weight: 800; text-decoration: none;
-    }
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
 
-    /* ----- FOOTER ----- */
-    footer { padding: 18px; text-align: center; color: var(--white); background: linear-gradient(90deg, var(--primary), #012a5e); margin-top: 26px; }
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
 
-    /* ----- RESPONSIVE ----- */
-    @media (max-width: 880px) {
-      .hero-title h1 { font-size: 54px; }
-      .hero-frame { height: 78vh; padding: 20px; border-radius: 14px; }
-    }
-    @media (max-width: 480px) {
-      .hero-title h1 { font-size: 36px; }
-      .player-photo { width: 100px; height: 100px; }
-      .player-card { padding: 12px; }
-    }
-  </style>
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Sections */
+        .section {
+            min-height: 100vh;
+            padding: 80px 2rem 2rem;
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section:first-child {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-main-text {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Left scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .scroll-line {
+            width: 2px;
+            height: 100px;
+            background: var(--white);
+            position: relative;
+        }
+
+        .scroll-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -3px;
+            width: 8px;
+            height: 2px;
+            background: var(--white);
+        }
+
+        .scroll-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        .scroll-chevron {
+            font-size: 1.2rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Right navigation */
+        .hero-nav {
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 2rem;
+        }
+
+        .hero-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: flex-end;
+        }
+
+        .hero-nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .hero-nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .hero-nav-line {
+            width: 2px;
+            height: 50px;
+            background: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        /* Social media icons */
+        .hero-social {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .hero-social a {
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .hero-social a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Logo */
+        .hero-logo {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--white);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        /* Menu icon */
+        .menu-icon {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        /* Search icon */
+        .search-icon {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: var(--white);
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Players Section */
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .player-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .player-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: block;
+            border: 4px solid var(--accent-color);
+            box-shadow: var(--shadow);
+        }
+
+        .player-info {
+            padding: 1.5rem;
+        }
+
+        .player-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .player-nickname {
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .player-level {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .close:hover {
+            color: var(--text-dark);
+        }
+
+        .player-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            background: var(--gray-100);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Fixtures Section */
+        .fixtures-table {
+            width: 100%;
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-top: 2rem;
+        }
+
+        .fixtures-table th,
+        .fixtures-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .fixtures-table th {
+            background: var(--primary-color);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .fixtures-table tr:hover {
+            background: var(--gray-100);
+        }
+
+        /* Updates Section */
+        .updates-container {
+            max-width: 800px;
+            margin: 2rem auto 0;
+        }
+
+        .update-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .update-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .update-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img,
+        .gallery-item video {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .video-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            line-height: 50px;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+
+            .players-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .fixtures-table {
+                font-size: 0.9rem;
+            }
+
+            .fixtures-table th,
+            .fixtures-table td {
+                padding: 0.5rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Section headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* WhatsApp Section */
+        .whatsapp-section {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .whatsapp-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            max-width: 400px;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .whatsapp-icon {
+            font-size: 4rem;
+            color: #25D366;
+            margin-bottom: 1rem;
+        }
+
+        .whatsapp-card h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .whatsapp-card p {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .whatsapp-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .contact-item i {
+            color: var(--accent-color);
+        }
+
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #25D366;
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .whatsapp-button:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .whatsapp-button i {
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
 <body>
-
-<!-- Top nav (transparent over hero) -->
-<nav class="top" aria-label="Main navigation">
-  <a class="nav-btn" href="#home" data-section="home">Home</a>
-  <a class="nav-btn" href="#players" data-section="players">Players</a>
-  <a class="nav-btn" href="#fixtures" data-section="fixtures">Fixtures</a>
-  <a class="nav-btn" href="#updates" data-section="updates">Updates</a>
-  <a class="nav-btn" href="#gallery" data-section="gallery">Gallery</a>
-  <a class="nav-btn" href="#contact" data-section="contact">Contact</a>
-</nav>
-
-<!-- HERO (Home) -->
-<header class="hero" id="home" role="banner">
-  <div class="hero-frame" role="img" aria-label="Football pitch hero">
-    <div class="hero-left-hint">SCROLL DOWN  ⬇</div>
-
-    <div class="hero-title" aria-hidden="true">
-      <h1>NALLS TEAM</h1>
-    </div>
-
-    <div class="hero-tag">200lvl Linguistics Team — School Football Team</div>
-
-    <div class="hero-cta">
-      <button class="btn" data-section="players">Meet the Team</button>
-      <button class="btn ghost" data-section="fixtures">See Fixtures</button>
-    </div>
-  </div>
-</header>
-
-<main>
-  <!-- PLAYERS -->
-  <section id="players" aria-labelledby="playersTitle" class="active">
-    <div class="container">
-      <h2 id="playersTitle">Players & Manager</h2>
-      <p style="color: var(--muted); margin-top: 6px">Click a player to view and edit detailed stats.</p>
-
-      <div class="players-grid" id="playersGrid" aria-live="polite">
-        <!-- Player cards will go here -->
-      </div>
-    </div>
-  </section>
-
-  <!-- FIXTURES -->
-  <section id="fixtures" aria-labelledby="fixturesTitle">
-    <div class="container">
-      <h2 id="fixturesTitle">Upcoming Fixtures</h2>
-      <table aria-describedby="fixturesTitle">
-        <thead><tr><th>Date</th><th>Competition</th><th>Opponent</th><th>Venue</th></tr></thead>
-        <tbody>
-          <tr><td>12 Aug 2025</td><td>Inter-School Cup</td><td>Greenfield High</td><td>Main Stadium</td></tr>
-          <tr><td>20 Aug 2025</td><td>Friendly</td><td>Blue Ridge College</td><td>Home Ground</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- UPDATES -->
-  <section id="updates" aria-labelledby="updatesTitle">
-    <div class="container">
-      <h2 id="updatesTitle">Latest Updates</h2>
-      <ul class="updates-list" aria-live="polite">
-        <li class="update">🏆 <strong>Victory!</strong> We beat Hillcrest Academy 3–1 in the semi-finals.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" aria-labelledby="contactTitle">
-    <div class="container">
-      <h2 id="contactTitle">Contact — WhatsApp</h2>
-      <div class="contact-card">
-        <div>
-          <h3>Team WhatsApp</h3>
-          <p>Chat with our sport director.</p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">⚽ Uni Football</a>
+            <ul class="nav-links">
+                <li><a onclick="showSection('home')">Home</a></li>
+                <li><a onclick="showSection('players')">Players</a></li>
+                <li><a onclick="showSection('fixtures')">Fixtures</a></li>
+                <li><a onclick="showSection('updates')">Updates</a></li>
+                <li><a onclick="showSection('gallery')">Gallery</a></li>
+                <li><a onclick="showSection('contact')">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-        <a class="whatsapp-btn" href="whatsapp.webp" target="_blank" rel="noopener noreferrer">💬 Chat on WhatsApp</a>
-      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="section hero active">
+        <div class="menu-icon">
+            <i class="fas fa-th"></i>
+        </div>
+        <div class="search-icon">
+            <i class="fas fa-search"></i>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-main-text">
+                <h1>FOOTBALL</h1>
+                <h2>The Most Beautiful Sport in the World</h2>
+                <p>Excellence on and off the field. Building champions, creating leaders.</p>
+                <a href="#" class="cta-button">Join the Team</a>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <div class="scroll-text">SCROLL DOWN TO LEARN MORE</div>
+            <div class="scroll-chevron">&#8595;</div>
+        </div>
+        
+       
+        </div>
+        
+        <div class="hero-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+            <a href="#"><i class="fab fa-dribbble"></i></a>
+        </div>
+        
+        <div class="hero-logo">NALLS</div>
+    </section>
+
+    <!-- Players Section -->
+    <section id="players" class="section">
+        <div class="section-header">
+            <h2>Our Team</h2>
+            <p>Meet the talented players and coaching staff</p>
+        </div>
+        <div class="players-grid">
+            <!-- Player cards will be generated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Fixtures Section -->
+    <section id="fixtures" class="section">
+        <div class="section-header">
+            <h2>Upcoming Fixtures</h2>
+            <p>Don't miss our upcoming matches</p>
+        </div>
+        <div class="fixtures-table">
+            <table style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Competition</th>
+                        <th>Opponent</th>
+                        <th>Venue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dec 15, 2024</td>
+                        <td>Inter-University League</td>
+                        <td>City University</td>
+                        <td>Home Stadium</td>
+                    </tr>
+                    <tr>
+                        <td>Dec 22, 2024</td>
+                        <td>Championship Cup</td>
+                        <td>State College</td>
+                        <td>Away Ground</td>
+                    </tr>
+                    <tr>
+                        <td>Jan 5, 2025</td>
+                        <td>Friendly Match</td>
+                        <td>Tech Institute</td>
+                        <td>Neutral Venue</td>
+                    </tr>
+                    <tr>
+                        <td>Jan 12, 2025</td>
+                        <td>League Match</td>
+                        <td>Business University</td>
+                        <td>Home Stadium</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Updates Section -->
+    <section id="updates" class="section">
+        <div class="section-header">
+            <h2>Team Updates</h2>
+            <p>Latest news and announcements</p>
+        </div>
+        <div class="updates-container">
+            <div class="update-item">
+                <div class="update-date">December 10, 2024</div>
+                <div class="update-title">Victory in Championship Match</div>
+                <p>Our team secured a thrilling 3-2 victory against City University in the championship match. Goals from Johnson, Smith, and Williams sealed the win.</p>
+            </div>
+            <div class="update-item">
+                <div class="update-date">December 8, 2024</div>
+                <div class="update-title">New Player Recruitment</div>
+                <p>We're excited to announce the addition of three new players to our squad. Welcome to the team!</p>
+            </div>
+            <div class="update-item">
+                <div class="update-date">December 5, 2024</div>
+                <div class="update-title">Training Schedule Update</div>
+                <p>Training sessions will now be held on Monday, Wednesday, and Friday evenings. All players are required to attend.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section">
+        <div class="section-header">
+            <h2>Gallery</h2>
+            <p>Capturing our best moments</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('gall1.jpeg')">
+                <img src="gall1.jpeg" alt="Team celebration">
+            </div>
+            <div class="gallery-item" onclick="openLightbox('gall2.jpeg')">
+                <img src="gall2.jpeg" alt="Match action">
+            </div>
+            <div class="gallery-item" onclick="openLightbox('cook.jpeg')">
+                <img src="cook.jpeg" alt="Player portrait">
+            </div>
+            <div class="gallery-item" onclick="openLightbox('daniel.jpeg')">
+                <img src="daniel.jpeg" alt="Team training">
+            </div>
+            <div class="gallery-item" onclick="openLightbox('ola.jpeg')">
+                <img src="ola.jpeg" alt="Match highlights">
+            </div>
+            <div class="gallery-item" onclick="openLightbox('paul.jpeg')">
+                <img src="paul.jpeg" alt="Team photo">
+            </div>
+            <div class="video-container">
+                <video controls>
+                    <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="section-header">
+            <h2>Contact Us</h2>
+            <p>Get in touch with our team via WhatsApp</p>
+        </div>
+        <div class="contact-container">
+            <div class="whatsapp-section">
+                <div class="whatsapp-card">
+                    <div class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>Chat with us on WhatsApp</h3>
+                    <p>Get instant responses to your questions about the team, matches, and more!</p>
+                    <div class="whatsapp-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+234 123 456 7890</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Available 24/7</span>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/2341234567890?text=Hi! I'm interested in the University Football Team. Can you tell me more?" class="whatsapp-button" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        Start WhatsApp Chat
+                    </a>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Player Modal -->
+    <div id="playerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalContent"></div>
+        </div>
     </div>
-  </section>
-</main>
 
-<footer>
-  &copy; <span id="year"></span> 200LVL Linguistics Team — School Football Team. All rights reserved.
-</footer>
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="modal">
+        <div class="modal-content" style="background: transparent; box-shadow: none; max-width: 90%;">
+            <span class="close" onclick="closeLightbox()">&times;</span>
+            <img id="lightboxImage" src="" alt="" style="width: 100%; height: auto; border-radius: 10px;">
+        </div>
+    </div>
 
-<script>
-  const players = [
-    {name: "Fabunmi Ayodeji Damilare", nickname: "CAPTAIN", level: "200L", img: "https://source.unsplash.com/400x400/?football,player&sig=1"},
-    {name: "Owolabi Olamilekan Remilekun", nickname: "LEXXY", level: "200L", img: "lekan.jpeg"},
-    // Add other players here
-  ];
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 University Football Team - Department of Sports. All rights reserved.</p>
+    </footer>
 
-  // Build player cards
-  const grid = document.getElementById('playersGrid');
-  players.forEach(player => {
-    const card = document.createElement('div');
-    card.className = 'player-card';
-    card.innerHTML = `
-      <img class="player-photo" src="${player.img}" alt="${player.name}">
-      <div class="player-name">${player.name}</div>
-      <div class="player-nick">${player.nickname}</div>
-      <div class="player-level">${player.level}</div>
-    `;
-    grid.appendChild(card);
-  });
+    <script>
+        // Player data - Updated with actual names
+        const players = [
+            { name: "Fabunmi Ayodeji Damilare", nickname: "Dami", level: "100L", image: "cook.jpeg", position: "Forward", jersey: 10, goals: 15, assists: 8, appearances: 20, yellowCards: 2, redCards: 0 },
+            { name: "Owolabi Olamilekan Remilekun", nickname: "Lekan", level: "200L", image: "daniel.jpeg", position: "Midfielder", jersey: 8, goals: 5, assists: 12, appearances: 18, yellowCards: 1, redCards: 0 },
+            { name: "Adeyemi Elijah Mayowa", nickname: "Mayowa", level: "300L", image: "ola.jpeg", position: "Defender", jersey: 4, goals: 2, assists: 3, appearances: 22, yellowCards: 4, redCards: 0 },
+            { name: "Ajayi David Olamide", nickname: "David", level: "400L", image: "paul.jpeg", position: "Goalkeeper", jersey: 1, goals: 0, assists: 0, appearances: 25, yellowCards: 0, redCards: 0 },
+            { name: "Dahunsi Ogooluwa Ebenezer", nickname: "Ogo", level: "100L", image: "lekan.jpeg", position: "Forward", jersey: 9, goals: 12, assists: 6, appearances: 19, yellowCards: 3, redCards: 0 },
+            { name: "Oluwatunmise Samuel Ayomiposi", nickname: "Tunmise", level: "200L", image: "ogo.jpeg", position: "Midfielder", jersey: 6, goals: 3, assists: 9, appearances: 21, yellowCards: 2, redCards: 0 },
+            { name: "Olaniyi Joseph Olamilekan", nickname: "Joseph", level: "300L", image: "alpha.jpeg", position: "Defender", jersey: 3, goals: 1, assists: 2, appearances: 23, yellowCards: 5, redCards: 1 },
+            { name: "Afolabi Oluwatosin Oluwagbenga", nickname: "Tosin", level: "400L", image: "TSA.jpeg", position: "Forward", jersey: 11, goals: 8, assists: 4, appearances: 17, yellowCards: 1, redCards: 0 },
+            { name: "Ayeni Oreoluwa Greatgrace", nickname: "Ore", level: "100L", image: "cook.jpeg", position: "Midfielder", jersey: 7, goals: 4, assists: 7, appearances: 20, yellowCards: 2, redCards: 0 },
+            { name: "Adeosebikan Segun Abayomi", nickname: "Segun", level: "200L", image: "daniel.jpeg", position: "Defender", jersey: 2, goals: 0, assists: 1, appearances: 24, yellowCards: 3, redCards: 0 },
+            { name: "Ikuomola Daniel", nickname: "Daniel", level: "300L", image: "ola.jpeg", position: "Forward", jersey: 14, goals: 6, assists: 3, appearances: 16, yellowCards: 1, redCards: 0 },
+            { name: "Badru Oluwatumininu", nickname: "Tumininu", level: "400L", image: "paul.jpeg", position: "Midfielder", jersey: 16, goals: 2, assists: 5, appearances: 18, yellowCards: 2, redCards: 0 },
+            { name: "Latef Fawas Morenikeji", nickname: "Fawas", level: "100L", image: "lekan.jpeg", position: "Defender", jersey: 5, goals: 1, assists: 0, appearances: 22, yellowCards: 4, redCards: 0 },
+            { name: "Megbowon Iwabiolorun", nickname: "Iwa", level: "200L", image: "ogo.jpeg", position: "Forward", jersey: 17, goals: 7, assists: 2, appearances: 15, yellowCards: 1, redCards: 0 },
+            { name: "Iheanacho Daniel", nickname: "Iheanacho", level: "300L", image: "alpha.jpeg", position: "Midfielder", jersey: 12, goals: 3, assists: 4, appearances: 19, yellowCards: 2, redCards: 0 },
+            { name: "Godwin Samuel Erikefee", nickname: "Erikefee", level: "400L", image: "TSA.jpeg", position: "Defender", jersey: 13, goals: 0, assists: 1, appearances: 21, yellowCards: 3, redCards: 0 },
+            { name: "Adedeji Adedolapo Daniel", nickname: "Dolapo", level: "100L", image: "cook.jpeg", position: "Forward", jersey: 18, goals: 4, assists: 1, appearances: 14, yellowCards: 1, redCards: 0 },
+            { name: "Salau Abdulramon Tobiloba", nickname: "Tobi", level: "200L", image: "daniel.jpeg", position: "Midfielder", jersey: 19, goals: 1, assists: 3, appearances: 17, yellowCards: 2, redCards: 0 },
+            { name: "Tiamiyu Abdulsalam Adedayo", nickname: "Adedayo", level: "300L", image: "ola.jpeg", position: "Defender", jersey: 20, goals: 0, assists: 0, appearances: 20, yellowCards: 4, redCards: 0 },
+            { name: "Adeyinka Paul Adeboye", nickname: "Paul", level: "400L", image: "paul.jpeg", position: "Forward", jersey: 21, goals: 3, assists: 1, appearances: 13, yellowCards: 1, redCards: 0 },
+            { name: "Coach Name", nickname: "Coach", level: "Manager", image: "lekan.jpeg", position: "Manager", jersey: 0, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 }
+        ];
 
-  // Footer year
-  document.getElementById('year').textContent = new Date().getFullYear();
+        // Generate player cards
+        function generatePlayerCards() {
+            const playersGrid = document.querySelector('.players-grid');
+            players.forEach((player, index) => {
+                const playerCard = document.createElement('div');
+                playerCard.className = 'player-card';
+                playerCard.onclick = () => openPlayerModal(index);
+                
+                playerCard.innerHTML = `
+                    <img src="${player.image}" alt="${player.name}" class="player-image">
+                    <div class="player-info">
+                        <div class="player-name">${player.name}</div>
+                        <div class="player-nickname">"${player.nickname}"</div>
+                        <div class="player-level">${player.level}</div>
+                    </div>
+                `;
+                
+                playersGrid.appendChild(playerCard);
+            });
+        }
 
-  // Navigation smooth scrolling and section toggle
-  document.querySelectorAll('nav.top .nav-btn').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.preventDefault();
-      const section = btn.dataset.section;
-      if (!section) return;
+        // Show/hide sections
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+                section.style.display = 'none';
+            });
+            
+            // Show selected section
+            const targetSection = document.getElementById(sectionId);
+            targetSection.classList.add('active');
+            targetSection.style.display = 'block';
+        }
 
-      document.querySelectorAll('main > section').forEach(sec => sec.classList.remove('active'));
-      const target = document.getElementById(section);
-      if (target) target.classList.add('active');
-      
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  });
-</script>
+        // Initialize sections on page load
+        function initializeSections() {
+            // Show only home section initially
+            document.querySelectorAll('.section').forEach(section => {
+                if (section.id !== 'home') {
+                    section.style.display = 'none';
+                }
+            });
+        }
 
+        // Player modal
+        function openPlayerModal(playerIndex) {
+            const player = players[playerIndex];
+            const modal = document.getElementById('playerModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <img src="${player.image}" alt="${player.name}" style="width: 200px; height: 200px; object-fit: cover; border-radius: 50%; margin-bottom: 1rem; border: 4px solid var(--accent-color); box-shadow: var(--shadow);">
+                    <h2>${player.name}</h2>
+                    <p style="color: var(--accent-color); font-weight: bold;">"${player.nickname}"</p>
+                    <p>${player.level} - ${player.position}</p>
+                    ${player.jersey > 0 ? `<p>Jersey #${player.jersey}</p>` : ''}
+                </div>
+                <div class="player-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">${player.goals}</div>
+                        <div class="stat-label">Goals</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">${player.assists}</div>
+                        <div class="stat-label">Assists</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">${player.appearances}</div>
+                        <div class="stat-label">Appearances</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">${player.yellowCards}</div>
+                        <div class="stat-label">Yellow Cards</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">${player.redCards}</div>
+                        <div class="stat-label">Red Cards</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">${player.position}</div>
+                        <div class="stat-label">Position</div>
+                    </div>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('playerModal').style.display = 'none';
+        }
+
+        // Lightbox
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('lightboxModal');
+            const lightboxImage = document.getElementById('lightboxImage');
+            lightboxImage.src = imageSrc;
+            lightbox.style.display = 'block';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').style.display = 'none';
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const playerModal = document.getElementById('playerModal');
+            const lightboxModal = document.getElementById('lightboxModal');
+            
+            if (event.target === playerModal) {
+                playerModal.style.display = 'none';
+            }
+            if (event.target === lightboxModal) {
+                lightboxModal.style.display = 'none';
+            }
+        }
+
+
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSections();
+            generatePlayerCards();
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('.nav-links a, .hero-nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const onclick = this.getAttribute('onclick');
+                if (onclick) {
+                    const targetId = onclick.match(/'([^']+)'/)[1];
+                    showSection(targetId);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
