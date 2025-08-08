@@ -54,6 +54,12 @@
     position:relative; display:flex; align-items:center; justify-content:center;
     backdrop-filter: blur(4px); padding:36px;
   }
+  .hero-subtext {
+  font-style: italic;
+  font-size: 16px;
+  color: #ffffffcc;
+  margin-top: -10px; /* adjust if needed */
+}  
   .hero-title{
     position:absolute; top:26px; left:40px; right:40px; text-align:center; pointer-events:none;
   }
@@ -161,8 +167,8 @@
   footer{ padding:18px; text-align:center; color:var(--white); background:linear-gradient(90deg,var(--primary),#012a5e); margin-top:26px }
 
   /* ----- RESPONSIVE ----- */
-  @media (max-width:880px){
-    .hero-title h1 { font-size:54px }
+  @media (max-width:600px){
+    .hero-title h1 { font-size:2.5rem; }
     .hero-frame{ height:78vh; padding:20px; border-radius:14px }
     .modal-card img{ display:block; float:none; margin:0 auto 10px }
   }
@@ -190,11 +196,10 @@
   <div class="hero-frame" role="img" aria-label="Football pitch hero">
     <div class="hero-left-hint">SCROLL DOWN  ⬇</div>
 
-    <div class="hero-title" aria-hidden="true">
-      <h1>NALLS TEAM</h1>
-    </div>
-
-    <div class="hero-tag">200lvl Linguistics Team — School Football Team</div>
+   <div class="hero-text">
+  <h1>NALLS<br>TEAM</h1>
+  <p class="hero-subtext">200lvl Linguistics team in school football team</p>
+</div>
 
     <div class="hero-cta">
       <button class="btn" data-section="players">Meet the Team</button>
