@@ -1185,6 +1185,22 @@
             font-weight: 600;
         }
 
+        /* Glowing effect for training update card */
+        .training-update-card {
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px rgba(255, 0, 0, 0.4), 0 0 10px rgba(255, 0, 0, 0.3), 0 0 15px rgba(255, 0, 0, 0.2);
+                border-color: rgba(255, 0, 0, 0.5);
+            }
+            to {
+                box-shadow: 0 0 15px rgba(255, 0, 0, 0.8), 0 0 25px rgba(255, 0, 0, 0.6), 0 0 35px rgba(255, 0, 0, 0.4);
+                border-color: rgba(255, 0, 0, 0.8);
+            }
+        }
+
         /* Featured Players */
         .featured-players {
             margin: 3rem 0;
@@ -1319,7 +1335,7 @@
                 <li><a onclick="showSection('players')">Players</a></li>
                 <li><a onclick="showSection('fixtures')">Fixtures</a></li>
                 <li><a onclick="showSection('updates')">Updates</a></li>
-                <li><a onclick="showSection('gallery')">Gallery</a></li>
+                <li><a onclick="showSection('gallery')">Players</a></li>
                 <li><a onclick="showSection('contact')">Contact</a></li>
             </ul>
             <div class="mobile-menu">
@@ -1349,9 +1365,11 @@
             
             <!-- Quick Stats -->
             <div class="hero-stats">
-                <div class="stat-card">
-                    <div class="stat-number">20+</div>
-                    <div class="stat-label">Players</div>
+                <div class="stat-card training-update-card">
+                    <div class="stat-number" style="font-size: 3rem; color: #650303e0;">Training Update</div>
+                    <div class="stat-label">Location: TBD</div>
+                    <div class="stat-label">Time: 0:00 PM</div>
+                    <div class="stat-label" style="color: #581a1a;">Note: Lateness won't be tolerated</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">0</div>
@@ -1362,8 +1380,8 @@
                     <div class="stat-label">Trophies</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">2025</div>
-                    <div class="stat-label"> Season</div>
+                    <div class="stat-number">2025/2026</div>
+                    <div class="stat-label">Season</div>
                 </div>
             </div>
             
@@ -1614,7 +1632,7 @@
             { name: "Adeyemi Elijah Mayowa", nickname: "Mayowa", level: "200L", image: "https://ui-avatars.com/api/?name=Adeyemi+Mayowa&background=f59e0b&color=fff&size=200", position: "Defender", jersey: 4, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
             { name: "Ajayi David Olamide", nickname: "David", level: "200L", image: "david.jpeg", position: "Right Back", jersey: 2, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
             { name: "Dahunsi Ogooluwa Ebenezer", nickname: "Ogo", level: "200L", image: "ogo.jpeg", position: "Right Back", jersey: 4, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
-            { name: "Oluwatunmise Samuel Ayomiposi", nickname: "Tunmise", level: "200L", image: "https://ui-avatars.com/api/?name=Oluwatunmise+Tunmise&background=f59e0b&color=fff&size=200", position: "Midfielder", jersey: 6, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
+            { name: "Oluwatunmise Samuel Ayomiposi", nickname: "Tunmise", level: "200L", image: "https://ui-avatars.com/api/?name=Oluwatunmise+Tunmise&background=f59e0b&color=fff+&size=200", position: "Midfielder", jersey: 6, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
             { name: "Olaniyi Joseph Olamilekan", nickname: "Joseph", level: "200L", image: "ola.jpeg", position: "Defender", jersey: 3, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0},
             { name: "Afolabi Oluwatosin Oluwagbenga", nickname: "Big Fish", level: "200L", image: "big.jpeg", position: "Midfielder", jersey: 10, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
             { name: "Ayeni Oreoluwa Greatgrace", nickname: "ALONI", level: "200L", image: "aloni.jpeg", position: "Right Back", jersey: 20, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
@@ -1794,3 +1812,4 @@
     </script>
 </body>
 </html>
+
