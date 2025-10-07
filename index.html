@@ -5,30 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>200lvl Linguistics Team - Nalls</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- OneSignal Push Notification Setup -->
-<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+   <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
-  window.OneSignal = window.OneSignal || [];
-  OneSignal.push(function() {
-    OneSignal.init({
-      appId: "4735f180-c018-459b-867f-3b8963747dc2", // 🔹 Replace with your OneSignal App ID
-      safari_web_id: "YOUR-SAFARI-WEB-ID", // 🔹 Add your Safari Web ID if enabled
-      notifyButton: {
-        enable: true, // shows the notification bell
-        size: 'medium',
-        theme: 'default',
-        position: 'bottom-right',
-        prenotify: true,
-        text: {
-          'tip.state.unsubscribed': 'Subscribe for match and training updates!',
-          'tip.state.subscribed': "You're subscribed to updates",
-          'message.action.subscribed': "Thanks for subscribing!",
-        },
-        colors: {
-          'circle.background': '#006400',
-          'circle.foreground': 'white',
-        }
-      },
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "4735f180-c018-459b-867f-3b8963747dc2",
     });
   });
 </script>
