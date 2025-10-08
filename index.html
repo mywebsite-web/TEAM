@@ -5,15 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>200lvl Linguistics Team - Nalls</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-   <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
-      appId: "4735f180-c018-459b-867f-3b8963747dc2",
-    });
-  });
-</script>
     <style>
         * {
             margin: 0;
@@ -1344,7 +1335,7 @@
                 <li><a onclick="showSection('players')">Players</a></li>
                 <li><a onclick="showSection('fixtures')">Fixtures</a></li>
                 <li><a onclick="showSection('updates')">Updates</a></li>
-                <li><a onclick="showSection('gallery')">Players</a></li>
+                <li><a onclick="showSection('gallery')">Gallery</a></li>
                 <li><a onclick="showSection('contact')">Contact</a></li>
             </ul>
             <div class="mobile-menu">
@@ -1485,6 +1476,7 @@
                         <th>Competition</th>
                         <th>Opponent</th>
                         <th>Venue</th>
+                         <th>Time</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1493,21 +1485,27 @@
                         <td>Friendly Match</td>
                         <td>Criminology Department</td>
                         <td>School Field</td>
+                        <td>10:00 AM</td>
+                        
                     </tr>
                     <tr>
                         <td>Dec 15, 2025</td>
                         <td>TBD</td>
                         <td>TBD</td>
                         <td>TBD</td>
+                        <td>TBD</td>
+
                     </tr>
                     <tr>
                         <td>Dec 15, 2025</td>
                         <td>TBD</td>
                         <td>TBD</td>
                         <td>TBD</td>
+                        <td>TBD</td>
                     </tr>
                     <tr>
                         <td>Dec 15, 2025</td>
+                        <td>TBD</td>
                         <td>TBD</td>
                         <td>TBD</td>
                         <td>TBD</td>
@@ -1530,7 +1528,7 @@
                 <p>⚽ FRIENDLY MATCH 🔥</p>
               <p>Linguistics Dept vs Criminology Dept</p>
               <p>📍 School Field</p>
-              <p>  🗓 Friday, Oct 10 | 🕟 TBD</p>
+              <p>  🗓 Friday, Oct 10 | 🕟 10:00 AM</p>
               <p>Bragging rights on the line.
                   Let’s make the team proud! 💪⚽</p>
             </div>
@@ -1543,7 +1541,7 @@
                 <div class="update-date">October 9, 2025</div>
                 <div class="update-title">Training Schedule Update</div>
                <p> ⚽ Match Prep Training </p>
-               <p>  🗓 Thursday, Oct 9 </p>
+               <p>  🗓 Wed, Oct 9 </p>
                <p> 🕟 4:30 PM </p>
                <p>📍 School Field </p>
                <p>Match is on Friday — let’s train hard and get ready to win! 💯</p>
@@ -1663,10 +1661,10 @@
             { name: "Latef Fawas Morenikeji", nickname: "Fawas", level: "200L", image: "https://ui-avatars.com/api/?name=Latef+Fawas&background=1e3a8a&color=fff&size=200", position: "Defender", jersey: 14, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
             { name: "Megbowon Iwabiolorun", nickname: "COOK", level: "200L", image: "cook.jpeg", position: "Right Winger", jersey: 7, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
             { name: "Iheanacho Daniel", nickname: "Iheanacho", level: "200L", image: "iheanacho.jpeg", position: "Midfielder", jersey: 15, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
-            { name: "Godwin Samuel Erikefee", nickname: "ALPHA", level: "200L", image: "alpha.jpeg", position: "Defender", jersey: 16, goals: 0, assists: 0, appearances: 0, yellowCards: 3, redCards: 0 },
+            { name: "Godwin Samuel Erikefee", nickname: "ALPHA", level: "200L", image: "alpha.jpeg", position: "Midfielder", jersey: 16, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
             { name: "Adedeji Adedolapo Daniel", nickname: "Dolapo", level: "200L", image: "https://ui-avatars.com/api/?name=Adedeji+Dolapo&background=3b82f6&color=fff&size=200", position: "Forward", jersey: 17, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
             { name: "Salau Abdulramon Tobiloba", nickname: "Tobi", level: "200L", image: "tobi.jpg", position: "Midfielder", jersey: 8, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
-            { name: "Tiamiyu Abdulsalam Adedayo", nickname: "SMѲNЄY", level: "200L", image: "TSA.jpeg", position: "Goalkeeper", jersey: 1, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
+            { name: "Tiamiyu Abdulsalam Adedayo", nickname: "S MONEY", level: "200L", image: "TSA.jpeg", position: "Goalkeeper", jersey: 1, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
             { name: "Adeyinka Paul Adeboye", nickname: "Paul", level: "200L", image: "paul.jpeg", position: "Forward", jersey: 12, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
             { name: "Coach Name", nickname: "Coach", level: "Manager", image: "https://ui-avatars.com/api/?name=Coach&background=f59e0b&color=fff&size=200", position: "Manager", jersey: 0, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 }
         ];
