@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>200lvl Linguistics Team - Nalls</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -22,14 +23,15 @@
             --gray-100: #f3f4f6;
             --gray-200: #e5e7eb;
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Roboto', sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
             overflow-x: hidden;
+            background: linear-gradient(180deg, var(--gray-100), var(--white));
         }
 
         /* Navigation */
@@ -37,7 +39,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(30, 58, 138, 0.95);
+            background: linear-gradient(to bottom, rgba(30, 58, 138, 0.95), rgba(30, 58, 138, 0.85));
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1rem 0;
@@ -55,9 +57,14 @@
 
         .logo {
             color: var(--white);
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.8rem;
+            font-weight: 700;
             text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .nav-links {
@@ -70,12 +77,13 @@
             color: var(--white);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s ease;
             cursor: pointer;
         }
 
         .nav-links a:hover {
             color: var(--accent-color);
+            transform: translateY(-2px);
         }
 
         .mobile-menu {
@@ -99,7 +107,7 @@
             left: -100%;
             width: 100%;
             height: 100vh;
-            background: rgba(30, 58, 138, 0.98);
+            background: linear-gradient(to bottom, rgba(30, 58, 138, 0.98), rgba(30, 58, 138, 0.88));
             backdrop-filter: blur(10px);
             z-index: 2000;
             transition: left 0.3s ease;
@@ -136,11 +144,12 @@
             text-decoration: none;
             font-size: 1.5rem;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .mobile-nav-links a:hover {
             color: var(--accent-color);
+            transform: translateY(-2px);
         }
 
         /* Sections */
@@ -151,6 +160,7 @@
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.6s ease;
+            background: linear-gradient(180deg, var(--white), var(--gray-100));
         }
 
         .section.active {
@@ -206,7 +216,7 @@
             font-style: italic;
             margin-bottom: 2rem;
             color: var(--accent-color);
-            font-weight: 300;
+            font-weight: 400;
         }
 
         .hero p {
@@ -252,7 +262,7 @@
             text-orientation: mixed;
             font-size: 0.8rem;
             letter-spacing: 2px;
-            font-weight: 300;
+            font-weight: 400;
         }
 
         .scroll-chevron {
@@ -298,12 +308,13 @@
             font-weight: 500;
             font-size: 0.9rem;
             letter-spacing: 1px;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s ease;
             cursor: pointer;
         }
 
         .hero-nav-links a:hover {
             color: var(--accent-color);
+            transform: translateX(-5px);
         }
 
         .hero-nav-line {
@@ -325,11 +336,12 @@
         .hero-social a {
             color: var(--white);
             font-size: 1.2rem;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .hero-social a:hover {
             color: var(--accent-color);
+            transform: scale(1.2);
         }
 
         /* Logo */
@@ -339,7 +351,7 @@
             left: 50%;
             transform: translateX(-50%);
             color: var(--white);
-            font-weight: bold;
+            font-weight: 700;
             font-size: 1.5rem;
         }
 
@@ -372,7 +384,7 @@
             padding: 1rem 2rem;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: bold;
+            font-weight: 700;
             transition: all 0.3s ease;
             box-shadow: var(--shadow);
             text-transform: uppercase;
@@ -381,7 +393,7 @@
 
         .cta-button:hover {
             background: #d97706;
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.05);
             box-shadow: var(--shadow-lg);
         }
 
@@ -402,11 +414,13 @@
             cursor: pointer;
             text-align: center;
             padding: 1.5rem;
+            border: 1px solid var(--gray-200);
         }
 
         .player-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-lg);
+            border-color: var(--accent-color);
         }
 
         .player-image {
@@ -426,7 +440,7 @@
 
         .player-name {
             font-size: 1.3rem;
-            font-weight: bold;
+            font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
@@ -463,7 +477,7 @@
             max-width: 500px;
             position: relative;
             animation: modalSlideIn 0.3s ease;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow-lg);
             border: 3px solid var(--primary-color);
         }
 
@@ -486,11 +500,11 @@
             cursor: pointer;
             color: var(--primary-color);
             transition: color 0.3s ease;
-            z-index: 10;
         }
 
         .close:hover {
             color: var(--accent-color);
+            transform: scale(1.1);
         }
 
         .player-stats {
@@ -506,21 +520,20 @@
             border-radius: 12px;
             text-align: center;
             border: 2px solid var(--accent-color);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow);
             transition: transform 0.3s ease;
         }
 
         .stat-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow-lg);
         }
 
         .stat-value {
             font-size: 2rem;
-            font-weight: bold;
+            font-weight: 700;
             color: var(--accent-color);
             margin-bottom: 0.5rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .stat-label {
@@ -539,6 +552,7 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             margin-top: 2rem;
+            border: 1px solid var(--gray-200);
         }
 
         .fixtures-table th,
@@ -558,6 +572,59 @@
             background: var(--gray-100);
         }
 
+        /* Team Lineup Section */
+        .lineup-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .lineup-list, .substitutes-list {
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border: 1px solid var(--gray-200);
+        }
+
+        .lineup-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .lineup-item:hover {
+            background: var(--gray-100);
+            transform: translateY(-2px);
+        }
+
+        .lineup-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .lineup-position {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        .lineup-jersey {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .substitutes-header {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin: 2rem 0 1rem;
+            text-align: center;
+        }
+
         /* Updates Section */
         .updates-container {
             max-width: 800px;
@@ -571,6 +638,12 @@
             box-shadow: var(--shadow);
             margin-bottom: 1.5rem;
             border-left: 4px solid var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .update-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
 
         .update-date {
@@ -581,7 +654,7 @@
 
         .update-title {
             font-size: 1.2rem;
-            font-weight: bold;
+            font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
@@ -598,11 +671,13 @@
             border-radius: 15px;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow);
         }
 
         .gallery-item:hover {
             transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
         }
 
         .gallery-item img,
@@ -610,12 +685,14 @@
             width: 100%;
             height: 250px;
             object-fit: cover;
+            loading: lazy;
         }
 
         .video-container {
             position: relative;
             border-radius: 15px;
             overflow: hidden;
+            box-shadow: var(--shadow);
         }
 
         /* Contact Section */
@@ -646,7 +723,7 @@
 
         .social-links a:hover {
             background: var(--accent-color);
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.1);
         }
 
         /* Footer */
@@ -704,11 +781,11 @@
 
             .stat-card {
                 padding: 1rem;
-                min-width: 100px;
+                min-width: 140px;
             }
 
             .stat-number {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
             .stat-label {
@@ -833,6 +910,29 @@
 
             .player-nickname {
                 font-size: 0.9rem;
+            }
+
+            /* Lineup Section */
+            .lineup-list, .substitutes-list {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            .lineup-item {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .lineup-name {
+                font-size: 1rem;
+            }
+
+            .lineup-position {
+                font-size: 0.8rem;
+            }
+
+            .lineup-jersey {
+                font-size: 0.8rem;
             }
 
             /* Fixtures Section */
@@ -1013,6 +1113,7 @@
             max-width: 400px;
             width: 100%;
             transition: transform 0.3s ease;
+            border: 1px solid var(--gray-200);
         }
 
         .whatsapp-card:hover {
@@ -1067,7 +1168,7 @@
             color: var(--white);
             padding: 1rem 2rem;
             border-radius: 50px;
-            font-weight: bold;
+            font-weight: 700;
             text-decoration: none;
             transition: all 0.3s ease;
             box-shadow: var(--shadow);
@@ -1077,7 +1178,7 @@
 
         .whatsapp-button:hover {
             background: #128C7E;
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.05);
             box-shadow: var(--shadow-lg);
         }
 
@@ -1087,11 +1188,11 @@
 
         /* Touch-friendly interactions */
         @media (max-width: 768px) {
-            .player-card {
+            .player-card, .lineup-item {
                 min-height: 200px;
             }
 
-            .player-card:active {
+            .player-card:active, .lineup-item:active {
                 transform: scale(0.98);
             }
 
@@ -1103,7 +1204,6 @@
                 transform: scale(0.98);
             }
 
-            /* Improve touch targets */
             .nav-links a,
             .mobile-nav-links a,
             .social-links a {
@@ -1113,19 +1213,16 @@
                 justify-content: center;
             }
 
-            /* Better spacing for mobile */
             .section {
                 min-height: auto;
                 padding: 80px 1rem 2rem;
             }
 
-            /* Improve modal for mobile */
             .modal-content {
                 max-height: 90vh;
                 overflow-y: auto;
             }
 
-            /* Better table scrolling */
             .fixtures-table {
                 overflow-x: auto;
                 display: block;
@@ -1158,30 +1255,29 @@
             padding: 1.5rem;
             border-radius: 15px;
             text-align: center;
-            min-width: 120px;
+            min-width: 180px;
             border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: transform 0.3s ease;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow);
         }
 
         .stat-card:hover {
             transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.3);
             border-color: var(--accent-color);
+            box-shadow: var(--shadow-lg);
         }
 
         .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
+            font-size: 2rem;
+            font-weight: 700;
             color: var(--accent-color);
             margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .stat-label {
             font-size: 0.9rem;
             color: var(--white);
-            opacity: 1;
             font-weight: 600;
         }
 
@@ -1229,14 +1325,15 @@
             text-align: center;
             min-width: 200px;
             border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow);
         }
 
         .featured-player:hover {
             transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.2);
             border-color: var(--accent-color);
+            box-shadow: var(--shadow-lg);
         }
 
         .featured-player img {
@@ -1246,7 +1343,8 @@
             object-fit: cover;
             border: 3px solid var(--accent-color);
             margin-bottom: 1rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow);
+            loading: lazy;
         }
 
         .featured-info h4 {
@@ -1279,15 +1377,16 @@
             text-align: center;
             min-width: 180px;
             border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow);
         }
 
         .quick-link-card:hover {
             transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.3);
             border-color: var(--accent-color);
+            box-shadow: var(--shadow-lg);
         }
 
         .quick-link-card i {
@@ -1307,7 +1406,6 @@
         .quick-link-card p {
             color: var(--white);
             font-size: 0.9rem;
-            opacity: 1;
             font-weight: 500;
         }
     </style>
@@ -1320,6 +1418,7 @@
             <li><a onclick="showSection('home'); closeMobileNav()">Home</a></li>
             <li><a onclick="showSection('players'); closeMobileNav()">Players</a></li>
             <li><a onclick="showSection('fixtures'); closeMobileNav()">Fixtures</a></li>
+            <li><a onclick="showSection('lineup'); closeMobileNav()">Team Lineup</a></li>
             <li><a onclick="showSection('updates'); closeMobileNav()">Updates</a></li>
             <li><a onclick="showSection('gallery'); closeMobileNav()">Gallery</a></li>
             <li><a onclick="showSection('contact'); closeMobileNav()">Contact</a></li>
@@ -1327,18 +1426,19 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
-            <a href="#" class="logo">⚽ Nalls Team</a>
+            <a href="#" class="logo" aria-label="Nalls Team Home">⚽ Nalls Team</a>
             <ul class="nav-links">
-                <li><a onclick="showSection('home')">Home</a></li>
-                <li><a onclick="showSection('players')">Players</a></li>
-                <li><a onclick="showSection('fixtures')">Fixtures</a></li>
-                <li><a onclick="showSection('updates')">Updates</a></li>
-                <li><a onclick="showSection('gallery')">Gallery</a></li>
-                <li><a onclick="showSection('contact')">Contact</a></li>
+                <li><a onclick="showSection('home')" aria-label="Home section">Home</a></li>
+                <li><a onclick="showSection('players')" aria-label="Players section">Players</a></li>
+                <li><a onclick="showSection('fixtures')" aria-label="Fixtures section">Fixtures</a></li>
+                <li><a onclick="showSection('lineup')" aria-label="Team Lineup section">Team Lineup</a></li>
+                <li><a onclick="showSection('updates')" aria-label="Updates section">Updates</a></li>
+                <li><a onclick="showSection('gallery')" aria-label="Gallery section">Gallery</a></li>
+                <li><a onclick="showSection('contact')" aria-label="Contact section">Contact</a></li>
             </ul>
-            <div class="mobile-menu">
+            <div class="mobile-menu" aria-label="Toggle mobile menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -1347,11 +1447,11 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="section hero active">
-        <div class="menu-icon">
+    <section id="home" class="section hero active" role="banner">
+        <div class="menu-icon" aria-label="Open mobile menu">
             <i class="fas fa-th"></i>
         </div>
-        <div class="search-icon">
+        <div class="search-icon" aria-label="Search">
             <i class="fas fa-search"></i>
         </div>
         
@@ -1360,17 +1460,24 @@
                 <h1>NALLS 200LVL</h1>
                 <h2>200lvl Linguistics Team</h2>
                 <p>Excellence on and off the field. Building champions, creating leaders.</p>
-                <a href="#" class="cta-button" onclick="showSection('contact')">Join the Team</a>
+                <a href="#" class="cta-button" onclick="showSection('contact')" aria-label="Join the team">Join the Team</a>
             </div>
             
-            <!-- Quick Stats -->
+            <!-- Hero Stats -->
             <div class="hero-stats">
                 <div class="stat-card training-update-card">
-                    <div class="stat-number" style="font-size: 3rem; color: #650303e0;">Training Update</div>
+                    <div class="stat-number" style="font-size: 2rem; color: #650303e0;">Training Update</div>
                     <div class="stat-label">📍 School Field</div>
-                    <div class="stat-label"> 🗓 9th October 2025</div>
+                    <div class="stat-label">🗓 9th October 2025</div>
                     <div class="stat-label">🕟 4:30 PM</div>
                     <div class="stat-label" style="color: #581a1a;">Note: Lateness won't be tolerated</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">Next Match</div>
+                    <div class="stat-label">Opponent: Criminology Department</div>
+                    <div class="stat-label">🗓 10th October 2025</div>
+                    <div class="stat-label">🕙 10:00 AM</div>
+                    <div class="stat-label">📍 School Field</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">0</div>
@@ -1391,21 +1498,21 @@
                 <h3>Featured Players</h3>
                 <div class="featured-grid">
                     <div class="featured-player">
-                        <img src=".jpeg" alt="Featured Player 1">
+                        <img src=".jpeg" alt="Featured Player 1" loading="lazy">
                         <div class="featured-info">
                             <h4>TBD</h4>
                             <p>Top Scorer</p>
                         </div>
                     </div>
                     <div class="featured-player">
-                        <img src="cap.jpeg" alt="Featured Player 2">
+                        <img src="cap.jpeg" alt="Featured Player 2" loading="lazy">
                         <div class="featured-info">
                             <h4>Fabunmi Ayodeji</h4>
                             <p>Team Captain</p>
                         </div>
                     </div>
                     <div class="featured-player">
-                        <img src=".jpeg" alt="Featured Player 3">
+                        <img src=".jpeg" alt="Featured Player 3" loading="lazy">
                         <div class="featured-info">
                             <h4>TBD</h4>
                             <p>Defensive Rock</p>
@@ -1416,13 +1523,6 @@
             
             <!-- Quick Links -->
             <div class="quick-links">
-                <div class="quick-link-card">
-                    <i class="fas fa-calendar-alt"></i>
-                    <h4>Next Match</h4>
-                    <p>Friendly Match</p>
-                    <div class="stat-label">Opponent: Criminology Department</div>
-                   <div class="stat-label">🗓 10th October 2025</div>
-                </div>
                 <div class="quick-link-card">
                     <i class="fas fa-trophy"></i>
                     <h4>Latest Trophy</h4>
@@ -1436,25 +1536,25 @@
             </div>
         </div>
         
-        <div class="scroll-indicator">
+        <div class="scroll-indicator" aria-hidden="true">
             <div class="scroll-line"></div>
-            <div class="scroll-text">NALLS NALLS NALLS </div>
+            <div class="scroll-text">NALLS NALLS NALLS</div>
             <div class="scroll-chevron">&#8595;</div>
         </div>
         
         <div class="hero-social">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
         </div>
         
         <div class="hero-logo">NALLS</div>
     </section>
 
     <!-- Players Section -->
-    <section id="players" class="section">
+    <section id="players" class="section" aria-labelledby="players-header">
         <div class="section-header">
-            <h2>Our Team</h2>
+            <h2 id="players-header">Our Team</h2>
             <p>Meet the talented players and coaching staff</p>
         </div>
         <div class="players-grid">
@@ -1463,9 +1563,9 @@
     </section>
 
     <!-- Fixtures Section -->
-    <section id="fixtures" class="section">
+    <section id="fixtures" class="section" aria-labelledby="fixtures-header">
         <div class="section-header">
-            <h2>Upcoming Fixtures</h2>
+            <h2 id="fixtures-header">Upcoming Fixtures</h2>
             <p>Don't miss our upcoming matches</p>
         </div>
         <div class="fixtures-table">
@@ -1476,7 +1576,7 @@
                         <th>Competition</th>
                         <th>Opponent</th>
                         <th>Venue</th>
-                         <th>Time</th>
+                        <th>Time</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1486,7 +1586,6 @@
                         <td>Criminology Department</td>
                         <td>School Field</td>
                         <td>10:00 AM</td>
-                        
                     </tr>
                     <tr>
                         <td>Dec 15, 2025</td>
@@ -1494,7 +1593,6 @@
                         <td>TBD</td>
                         <td>TBD</td>
                         <td>TBD</td>
-
                     </tr>
                     <tr>
                         <td>Dec 15, 2025</td>
@@ -1515,64 +1613,81 @@
         </div>
     </section>
 
-    <!-- Updates Section -->
-    <section id="updates" class="section">
+    <!-- Team Lineup Section -->
+    <section id="lineup" class="section" aria-labelledby="lineup-header">
         <div class="section-header">
-            <h2>Team Updates</h2>
+            <h2 id="lineup-header">Team Lineup</h2>
+            <p>Starting XI and Substitutes for the Upcoming Match</p>
+        </div>
+        <div class="lineup-container">
+            <h3 style="text-align: center; color: var(--primary-color); margin-bottom: 1.5rem;">Starting XI</h3>
+            <div class="lineup-list" id="startingLineup">
+                <!-- Starting XI list will be generated by JavaScript -->
+            </div>
+            <h3 class="substitutes-header">Substitutes</h3>
+            <div class="substitutes-list" id="substitutes">
+                <!-- Substitutes list will be generated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Updates Section -->
+    <section id="updates" class="section" aria-labelledby="updates-header">
+        <div class="section-header">
+            <h2 id="updates-header">Team Updates</h2>
             <p>Latest news and announcements</p>
         </div>
         <div class="updates-container">
             <div class="update-item">
                 <div class="update-date">October 10, 2025</div>
-                <div class="update-title"> Match</div>
+                <div class="update-title">Match</div>
                 <p>⚽ FRIENDLY MATCH 🔥</p>
-              <p>Linguistics Dept vs Criminology Dept</p>
-              <p>📍 School Field</p>
-              <p>  🗓 Friday, Oct 10 | 🕟 10:00 AM</p>
-              <p>Bragging rights on the line.
-                  Let’s make the team proud! 💪⚽</p>
+                <p>Linguistics Dept vs Criminology Dept</p>
+                <p>📍 School Field</p>
+                <p>🗓 Friday, Oct 10 | 🕟 10:00 AM</p>
+                <p>Bragging rights on the line. Let’s make the team proud! 💪⚽</p>
             </div>
             <div class="update-item">
-                <div class="update-date">TDB, 2025</div>
+                <div class="update-date">TBD, 2025</div>
                 <div class="update-title">New Player Recruitment</div>
                 <p>Will be announced soon...</p>
             </div>
             <div class="update-item">
                 <div class="update-date">October 9, 2025</div>
                 <div class="update-title">Training Schedule Update</div>
-               <p> ⚽ Match Prep Training </p>
-               <p>  🗓 Wed, Oct 9 </p>
-               <p> 🕟 4:30 PM </p>
-               <p>📍 School Field </p>
-               <p>Match is on Friday — let’s train hard and get ready to win! 💯</p>
+                <p>⚽ Match Prep Training</p>
+                <p>🗓 Wed, Oct 9</p>
+                <p>🕟 4:30 PM</p>
+                <p>📍 School Field</p>
+                <p>Match is on Friday — let’s train hard and get ready to win! 💯</p>
             </div>
         </div>
     </section>
 
     <!-- Gallery Section -->
-    <section id="gallery" class="section">
+    <section id="gallery" class="section" aria-labelledby="gallery-header">
         <div class="section-header">
-            <h2>Gallery</h2>
+            <h2 id="gallery-header">Gallery</h2>
             <p>Capturing our best moments</p>
         </div>
         <div class="gallery-grid">
             <div class="gallery-item" onclick="openLightbox('gall1.jpeg')">
-                <img src="gall1.jpeg" alt="Team celebration">
+                <img src="gall1.jpeg" alt="Team celebration" loading="lazy">
             </div>
             <div class="gallery-item" onclick="openLightbox('gall2.jpeg')">
-                <img src="gall2.jpeg" alt="Match action">
-            </div>
-            <div class="gallery-item" onclick="openLightbox('gall3jpeg')">
-                <img src="gall3.jpeg" alt="Players">
-            </div>
-            <div class="gallery-item" onclick="openLightbox('gall2.jpeg')">
-                <img src="gall2.jpeg" alt="Team training">
-            </div>
-            <div class="gallery-item" onclick="openLightbox('gall1.jpeg')">
-                <img src="gall1.jpeg" alt="Match highlights">
+                <img src="gall2.jpeg" alt="Match action" loading="lazy">
             </div>
             <div class="gallery-item" onclick="openLightbox('gall3.jpeg')">
-                <img src="gall3.jpeg" alt="Team photo">
+                <img src="gall3.jpeg" alt="Players" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openLightbox('gall2.jpeg')">
+                <img src="gall2.jpeg" alt="Team training" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openLightbox('gall1.jpeg')">
+                <img src="gall1.jpeg" alt="Match highlights" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openLightbox('gall3.jpeg')">
+                <img src="gall3.jpeg" alt="Team photo" loading="lazy">
             </div>
             <div class="video-container">
                 <video controls>
@@ -1584,9 +1699,9 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section">
+    <section id="contact" class="section" aria-labelledby="contact-header">
         <div class="section-header">
-            <h2>Contact Us</h2>
+            <h2 id="contact-header">Contact Us</h2>
             <p>Get in touch with our team via WhatsApp</p>
         </div>
         <div class="contact-container">
@@ -1607,17 +1722,17 @@
                             <span>Available 24/7</span>
                         </div>
                     </div>
-                    <a href="https://wa.me/2341234567890?text=Hi! I'm interested in the University Football Team. Can you tell me more?" class="whatsapp-button" target="_blank">
+                    <a href="https://wa.me/2341234567890?text=Hi! I'm interested in the University Football Team. Can you tell me more?" class="whatsapp-button" target="_blank" aria-label="Start WhatsApp chat">
                         <i class="fab fa-whatsapp"></i>
                         Start WhatsApp Chat
                     </a>
                 </div>
             </div>
             <div class="social-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
             </div>
         </div>
     </section>
@@ -1625,7 +1740,7 @@
     <!-- Player Modal -->
     <div id="playerModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
+            <span class="close" onclick="closeModal()" aria-label="Close player modal">&times;</span>
             <div id="modalContent"></div>
         </div>
     </div>
@@ -1633,7 +1748,7 @@
     <!-- Lightbox Modal -->
     <div id="lightboxModal" class="modal">
         <div class="modal-content" style="background: transparent; box-shadow: none; max-width: 90%;">
-            <span class="close" onclick="closeLightbox()">&times;</span>
+            <span class="close" onclick="closeLightbox()" aria-label="Close lightbox">&times;</span>
             <img id="lightboxImage" src="" alt="" style="width: 100%; height: auto; border-radius: 10px;">
         </div>
     </div>
@@ -1644,7 +1759,7 @@
     </footer>
 
     <script>
-        // Player data - Updated with avatar placeholders
+        // Player data
         const players = [
             { name: "Fabunmi Ayodeji Damilare", nickname: "Captain", level: "200L", image: "cap.jpeg", position: "Forward", jersey: 11, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
             { name: "Owolabi Olamilekan Remilekun", nickname: "Lekan", level: "200L", image: "lekan.jpeg", position: "Striker", jersey: 9, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
@@ -1664,10 +1779,34 @@
             { name: "Godwin Samuel Erikefee", nickname: "ALPHA", level: "200L", image: "alpha.jpeg", position: "Midfielder", jersey: 16, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
             { name: "Adedeji Adedolapo Daniel", nickname: "Dolapo", level: "200L", image: "https://ui-avatars.com/api/?name=Adedeji+Dolapo&background=3b82f6&color=fff&size=200", position: "Forward", jersey: 17, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
             { name: "Salau Abdulramon Tobiloba", nickname: "Tobi", level: "200L", image: "tobi.jpg", position: "Midfielder", jersey: 8, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
-            { name: "Tiamiyu Abdulsalam Adedayo", nickname: "S MONEY", level: "200L", image: "TSA.jpeg", position: "Goalkeeper", jersey: 1, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
-            { name: "Adeyinka Paul Adeboye", nickname: "Paul", level: "200L", image: "paul.jpeg", position: "Forward", jersey: 12, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
+            { name: "Tiamiyu Abdulsalam Adedayo", nickname: "SMONEY", level: "200L", image: "TSA.jpeg", position: "Goalkeeper", jersey: 1, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
+            { name: "Adeyinka Paul Adeboye", nickname: "Paul", level: "200L", image: "paul.jpeg", position: "Goalkeeper", jersey: 12, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 },
             { name: "Coach Name", nickname: "Coach", level: "Manager", image: "https://ui-avatars.com/api/?name=Coach&background=f59e0b&color=fff&size=200", position: "Manager", jersey: 0, goals: 0, assists: 0, appearances: 0, yellowCards: 0, redCards: 0 }
         ];
+
+        // Team lineup data for the upcoming match
+        const lineup = {
+            startingXI: [
+                { name: "TBD", position: "Goalkeeper", jersey: 1 },
+                { name: "TBD", position: "Right Back", jersey: 2 },
+                { name: "TBD", position: "Left Back", jersey: 3 },
+                { name: "TBD", position: "Defender", jersey: 4 },
+                { name: "TBD", position: "Defender", jersey: 5 },
+                { name: "TBD", position: "Midfielder", jersey: 6 },
+                { name: "TBD", position: "Right Winger", jersey: 7 },
+                { name: "TBD", position: "Midfielder", jersey: 10 },
+                { name: "TBD", position: "Forward", jersey: 11 },
+                { name: "TBD", position: "Striker", jersey: 9 },
+                { name: "TBD", position: "Forward", jersey: 12 }
+            ],
+            substitutes: [
+                { name: "TBD", position: "Midfielder", jersey: 13 },
+                { name: "TBD", position: "Defender", jersey: 14 },
+                { name: "TBD", position: "Midfielder", jersey: 15 },
+                { name: "TBD", position: "Midfielder", jersey: 16 },
+                { name: "TBD", position: "Forward", jersey: 17 }
+            ]
+        };
 
         // Generate player cards
         function generatePlayerCards() {
@@ -1675,10 +1814,11 @@
             players.forEach((player, index) => {
                 const playerCard = document.createElement('div');
                 playerCard.className = 'player-card';
+                playerCard.setAttribute('aria-label', `Player: ${player.name}`);
                 playerCard.onclick = () => openPlayerModal(index);
                 
                 playerCard.innerHTML = `
-                    <img src="${player.image}" alt="${player.name}" class="player-image">
+                    <img src="${player.image}" alt="${player.name}" class="player-image" loading="lazy">
                     <div class="player-info">
                         <div class="player-name">${player.name}</div>
                         <div class="player-nickname">"${player.nickname}"</div>
@@ -1690,15 +1830,55 @@
             });
         }
 
+        // Generate lineup list
+        function generateLineupCards() {
+            const startingLineupList = document.getElementById('startingLineup');
+            const substitutesList = document.getElementById('substitutes');
+
+            // Generate Starting XI
+            lineup.startingXI.forEach((player, index) => {
+                const lineupItem = document.createElement('div');
+                lineupItem.className = 'lineup-item';
+                lineupItem.setAttribute('aria-label', `Player: ${player.name}`);
+                lineupItem.onclick = () => openPlayerModal(players.findIndex(p => p.nickname === player.name || p.name.includes(player.name)));
+                
+                lineupItem.innerHTML = `
+                    <div class="lineup-name">${player.name}</div>
+                    <div>
+                        <div class="lineup-position">${player.position}</div>
+                        <div class="lineup-jersey">Jersey #${player.jersey}</div>
+                    </div>
+                `;
+                
+                startingLineupList.appendChild(lineupItem);
+            });
+
+            // Generate Substitutes
+            lineup.substitutes.forEach((player, index) => {
+                const lineupItem = document.createElement('div');
+                lineupItem.className = 'lineup-item';
+                lineupItem.setAttribute('aria-label', `Player: ${player.name}`);
+                lineupItem.onclick = () => openPlayerModal(players.findIndex(p => p.nickname === player.name || p.name.includes(player.name)));
+                
+                lineupItem.innerHTML = `
+                    <div class="lineup-name">${player.name}</div>
+                    <div>
+                        <div class="lineup-position">${player.position}</div>
+                        <div class="lineup-jersey">Jersey #${player.jersey}</div>
+                    </div>
+                `;
+                
+                substitutesList.appendChild(lineupItem);
+            });
+        }
+
         // Show/hide sections
         function showSection(sectionId) {
-            // Hide all sections
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('active');
                 section.style.display = 'none';
             });
             
-            // Show selected section
             const targetSection = document.getElementById(sectionId);
             targetSection.classList.add('active');
             targetSection.style.display = 'block';
@@ -1706,7 +1886,6 @@
 
         // Initialize sections on page load
         function initializeSections() {
-            // Show only home section initially
             document.querySelectorAll('.section').forEach(section => {
                 if (section.id !== 'home') {
                     section.style.display = 'none';
@@ -1722,8 +1901,8 @@
             
             modalContent.innerHTML = `
                 <div style="text-align: center; margin-bottom: 2rem;">
-                    <img src="${player.image}" alt="${player.name}" style="width: 200px; height: 200px; object-fit: cover; border-radius: 50%; margin-bottom: 1.5rem; border: 4px solid var(--accent-color); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);">
-                    <h2 style="color: var(--primary-color); font-size: 1.8rem; margin-bottom: 0.5rem; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);">${player.name}</h2>
+                    <img src="${player.image}" alt="${player.name}" style="width: 200px; height: 200px; object-fit: cover; border-radius: 50%; margin-bottom: 1.5rem; border: 4px solid var(--accent-color); box-shadow: var(--shadow);">
+                    <h2 style="color: var(--primary-color); font-size: 1.8rem; margin-bottom: 0.5rem;">${player.name}</h2>
                     <p style="color: var(--accent-color); font-weight: bold; font-size: 1.1rem; margin-bottom: 0.5rem;">"${player.nickname}"</p>
                     <p style="color: var(--text-dark); font-weight: 600; margin-bottom: 0.5rem;">${player.level} - ${player.position}</p>
                     ${player.jersey > 0 ? `<p style="color: var(--primary-color); font-weight: bold; font-size: 1.2rem;">Jersey #${player.jersey}</p>` : ''}
@@ -1801,6 +1980,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             initializeSections();
             generatePlayerCards();
+            generateLineupCards();
 
             // Mobile menu toggle
             const mobileMenu = document.querySelector('.mobile-menu');
